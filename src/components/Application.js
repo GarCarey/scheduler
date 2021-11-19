@@ -5,7 +5,7 @@ import "components/Appointment";
 import "components/Application.scss";
 import Appointment from "components/Appointment";
 
-const appointments = {
+/*const appointments = {
   1: {
     id: 1,
     time: "12pm",
@@ -43,21 +43,31 @@ const appointments = {
     time: "4pm",
   },
 };
-
-let appointmentsArray = Object.values(appointments).map((appointment) => {
-  return <Appointment key={appointment.id} {...appointment} />;
-});
+*/
 
 export default function Application(props) {
-  const [day, setDay] = useState([]);
-  const [week, setWeek] = useState([]);
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    appointments: {},
+  });
+
+  const setDay = (day) => setState({ ...state, day });
+  const setDays = (days) => setState((prev) => ({ ...prev, days }));
+
+  let appointmentsArray = Object.values(state.appointments).map(
+    (appointment) => {
+      return <Appointment key={appointment.id} {...state.appointment} />;
+    }
+  );
 
   useEffect(() => {
     axios.get("http://localhost:8001/api/days").then((response) => {
       console.log(response.data);
-      setWeek(response.data);
+      setDays(response.data);
     });
   }, []);
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -68,7 +78,7 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList days={week} value={day} onChange={setDay} />
+          <DayList days={state.days} value={state.day} onChange={setDay} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
