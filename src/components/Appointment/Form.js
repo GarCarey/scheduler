@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Button from "components/Button";
-import InterviewerList from "components/InterviewerList";
+import Button from "../Button";
+import InterviewerList from "../InterviewerList";
 
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
@@ -13,7 +13,7 @@ export default function Form(props) {
 
   const cancel = () => {
     reset();
-    props.onCancel();
+    props.onCancel(); //possibly add return before
   };
 
   return (
@@ -25,16 +25,13 @@ export default function Form(props) {
             name={props.name}
             type="text"
             placeholder="Enter Student Name"
-            /*
-          This must be a controlled component
-          your code goes here
-        */
-            onChange={(e) => setStudent(e.target.value)}
+            value={student}
+            onChange={(event) => setStudent(event.target.value)}
           />
         </form>
         <InterviewerList
-          /* your code goes here */
-          onChange={(e) => setInterviewer(e)}
+          value={interviewer}
+          onChange={setInterviewer}
           interviewers={props.interviewers}
         />
       </section>
