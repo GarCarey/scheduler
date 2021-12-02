@@ -30,3 +30,12 @@ npm run storybook
 ```
 
 ## Final Project
+
+Main View
+!["screenshot of main view"](https://github.com/GarCarey/scheduler/blob/master/docs/Main.png)
+
+Create/Edit View
+!["screenshot of create-edit view"](https://github.com/GarCarey/scheduler/blob/master/docs/Create:Edit.png)
+
+Confirm Delete view
+!["screenshot of confirm delete view"](https://github.com/GarCarey/scheduler/blob/master/docs/Delete%20confirm.png)
