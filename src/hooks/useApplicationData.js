@@ -9,11 +9,11 @@ export default function useApplicationData() {
     interviewers: {},
   });
 
-  const dayApi = axios.get("http://localhost:8001/api/days");
-  const appApi = axios.get("http://localhost:8001/api/appointments");
-  const interviewerApi = axios.get("http://localhost:8001/api/interviewers");
-
   useEffect(() => {
+    const dayApi = axios.get("/api/days");
+    const appApi = axios.get("/api/appointments");
+    const interviewerApi = axios.get("/api/interviewers");
+
     Promise.all([dayApi, appApi, interviewerApi]).then((all) => {
       setState((prev) => ({
         ...prev,
