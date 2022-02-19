@@ -53,8 +53,20 @@ export default function useApplicationData() {
 
     let day = {
       ...state.days[foundDay],
-      spots: state.days[foundDay].spots - 1,
+      spots: state.days[foundDay].spots,
     };
+
+    if (!state.appointments[id].interview) {
+      day = {
+        ...state.days[foundDay],
+        spots: state.days[foundDay].spots - 1,
+      };
+    } else {
+      day = {
+        ...state.days[foundDay],
+        spots: state.days[foundDay].spots,
+      };
+    }
 
     days[foundDay] = day;
 
